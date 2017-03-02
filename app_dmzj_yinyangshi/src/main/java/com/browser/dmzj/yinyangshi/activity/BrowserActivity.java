@@ -13,6 +13,7 @@ import com.base.browser.utils.ActivitySlideAnim;
 import com.base.browser.utils.ActivityUtils;
 import com.browser.dmzj.yinyangshi.manager.ad.BannerAdUtils;
 import com.browser.dmzj.yinyangshi.manager.ad.BottomNativeAdManager;
+import com.browser.dmzj.yinyangshi.manager.popupwindow.MyMainPopupWindow;
 import com.browser.dmzj.yinyangshi.manager.webview.MyWebViewManager;
 import com.browser.dmzj.yinyangshi.utils.Constant;
 import com.browser.dmzj.yinyangshi.utils.DoAnalyticsManager;
@@ -35,6 +36,14 @@ public class BrowserActivity extends MainActivity {
     @Override
     protected void initWebViewManager() {
         mWebViewManager = new MyWebViewManager(this);
+    }
+
+    @Override
+    public void initPopupWindow() {
+        if (mPopupWindow == null) {
+            mPopupWindow = new MyMainPopupWindow(BrowserActivity.this, "com.browser.dmzj.yinyangshi.activity.SplashActivity");
+        }
+        mPopupWindow.showPopupWindow(ll_bottom);
     }
 
     private InterstitialAd interstitialAd; // 插屏ad

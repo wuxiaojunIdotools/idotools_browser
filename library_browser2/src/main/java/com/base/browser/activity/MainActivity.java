@@ -196,10 +196,11 @@ public abstract class MainActivity extends BaseActivity implements View.OnClickL
             refresh();
 
         } else if (id == R.id.id_iv_more) {
-            if (mPopupWindow == null) {
+            initPopupWindow();
+            /*if (mPopupWindow == null) {
                 mPopupWindow = new MainPopupWindow(MainActivity.this, getIntent().getComponent().getPackageName() + ".activity.SplashActivity");
             }
-            mPopupWindow.showPopupWindow(ll_bottom);
+            mPopupWindow.showPopupWindow(ll_bottom);*/
 
         } else if (id == R.id.id_iv_go) {//前往
             searchDmzj();
@@ -211,6 +212,8 @@ public abstract class MainActivity extends BaseActivity implements View.OnClickL
 
         }
     }
+
+    public abstract void initPopupWindow();
 
     @Override
     public void onRefresh() {

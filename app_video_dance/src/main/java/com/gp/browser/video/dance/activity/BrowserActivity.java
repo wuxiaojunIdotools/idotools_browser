@@ -33,6 +33,11 @@ public class BrowserActivity extends MainActivity {
     }
 
     @Override
+    public void initPopupWindow() {
+
+    }
+
+    @Override
     protected void showInterstitialAd(int progress) {
 
     }

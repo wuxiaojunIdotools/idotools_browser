@@ -13,10 +13,13 @@ public class App extends Application {
 
     public static App app;
 
+    public String a;
+
     @Override
     public void onCreate() {
         super.onCreate();
         app = this;
+        System.out.println(a.toString());
     }
 
     public static App get(Context context) {

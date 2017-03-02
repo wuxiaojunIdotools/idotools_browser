@@ -36,11 +36,11 @@ import com.idotools.utils.ToastUtils;
 /**
  * Created by wuxiaojun on 16-10-2.
  */
-public class MainPopupWindow implements View.OnClickListener {
+public abstract class MainPopupWindow implements View.OnClickListener {
 
     public static final int DURATION_START = 200;
     public static final int DURATION_END = 200;
-    private Context mContext;
+    protected Context mContext;
     public PopupWindow popupWindow;
     private View contentView;
     private LinearLayout id_ll_empty;
@@ -187,6 +187,8 @@ public class MainPopupWindow implements View.OnClickListener {
         return false;
     }
 
+    protected  abstract void eventId(int id);
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -199,7 +201,8 @@ public class MainPopupWindow implements View.OnClickListener {
             } else {
                 ShareUtils.shareText((MainActivity) mContext, mWebViewManager.getCurrentTitle() + " " + mWebViewManager.getCurrentUrl());
             }
-            DoAnalyticsManager.event(mContext, DoAnalyticsManager.DOT_KEY_SHARE_CLICK);
+//            DoAnalyticsManager.event(mContext, DoAnalyticsManager.DOT_KEY_SHARE_CLICK);
+            eventId(id);
 
         } else if (id == R.id.id_records) {//收藏
             exitStartAnim();
@@ -216,15 +219,19 @@ public class MainPopupWindow implements View.OnClickListener {
             } else {
                 recordsPage();
             }
-            DoAnalyticsManager.event(mContext, DoAnalyticsManager.DOT_KEY_RECORDS_CLICK);
+//            DoAnalyticsManager.event(mContext, DoAnalyticsManager.DOT_KEY_RECORDS_CLICK);
+            eventId(id);
+
         } else if (id == R.id.id_add_shortcut) {//添加桌面快捷方式
             addShortcut(mWebViewManager.getCurrentTitle(), mWebViewManager.getCurrentUrl(), className);
-            DoAnalyticsManager.event(mContext, DoAnalyticsManager.DOT_KEY_SHORTCUT_CLICK);
+//            DoAnalyticsManager.event(mContext, DoAnalyticsManager.DOT_KEY_SHORTCUT_CLICK);
+            eventId(id);
 
         } else if (id == R.id.id_night_mode) {//夜间模式
             exitStartAnim();
             isDayNightModeToogle = 1;
-            DoAnalyticsManager.event(mContext, DoAnalyticsManager.DOT_KEY_NIGHT_MODE_CLICK);
+//            DoAnalyticsManager.event(mContext, DoAnalyticsManager.DOT_KEY_NIGHT_MODE_CLICK);
+            eventId(id);
 
         } else if (id == R.id.id_check_update) {//检查更新
             checkUpdate();
